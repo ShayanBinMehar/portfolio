@@ -235,10 +235,6 @@ function App() {
               />
               <div className="portrait-fade" aria-hidden="true" />
             </div>
-            <div className="float-chip chip-python" aria-hidden="true"><span className="chip-symbol">Py</span><span>Python</span></div>
-            <div className="float-chip chip-data" aria-hidden="true"><Database size={16} /><span>Data</span></div>
-            <div className="float-chip chip-code" aria-hidden="true"><Code2 size={16} /><span>Code</span></div>
-            <div className="visual-caption" aria-hidden="true"><span className="caption-dot" /> ALWAYS LEARNING · ALWAYS BUILDING</div>
           </div>
           <a href="#about" className="scroll-cue"><span>SCROLL TO EXPLORE</span><ArrowDown size={14} aria-hidden="true" /></a>
         </section>
