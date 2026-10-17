@@ -206,6 +206,8 @@ function App() {
 
       <main id="main">
         <section className="hero" id="home">
+          <img className="hero-bg" src={`${import.meta.env.BASE_URL}hero-figure.png`} alt="" />
+          <div className="hero-shade" aria-hidden="true" />
           <div className="hero-copy">
             <div className="availability"><span className="pulse-dot" aria-hidden="true" /> OPEN TO INTERNSHIPS, COLLABORATION AND JOB OPPORTUNITIES</div>
             <p className="hero-kicker">HEY, I'M {profile.shortName.toUpperCase()} <span className="wave" aria-hidden="true">✳</span></p>
@@ -218,22 +220,6 @@ function App() {
             <div className="hero-meta">
               <span><GraduationCap size={16} aria-hidden="true" /> FAST-NUCES Karachi</span>
               <span><Globe size={15} aria-hidden="true" /> {profile.location}</span>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <div className="visual-grid" aria-hidden="true" />
-            <div className="orbit orbit-one" aria-hidden="true" />
-            <div className="orbit orbit-two" aria-hidden="true" />
-            <div className="orbit orbit-three" aria-hidden="true" />
-            <div className="portrait-wrap">
-              <img
-                className="hero-portrait"
-                src={`${import.meta.env.BASE_URL}hero-ai.png`}
-                alt="Abstract luminous AI figure representing machine intelligence"
-                width="960"
-                height="540"
-              />
-              <div className="portrait-fade" aria-hidden="true" />
             </div>
           </div>
           <a href="#about" className="scroll-cue"><span>SCROLL TO EXPLORE</span><ArrowDown size={14} aria-hidden="true" /></a>
