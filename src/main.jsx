@@ -119,6 +119,17 @@ function SectionHeading({ eyebrow, title, description }) {
 function App() {
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [activeHash, setActiveHash] = React.useState(window.location.hash || '#home')
+  const [projectPage, setProjectPage] = React.useState(0)
+  const pageSize = 4
+  const pageCount = Math.ceil(projects.length / pageSize)
+  const visibleProjects = projects.slice(projectPage * pageSize, projectPage * pageSize + pageSize)
+
+  const showProjectPage = (page) => {
+    const next = Math.min(Math.max(page, 0), pageCount - 1)
+    setProjectPage(next)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    document.getElementById('projects')?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+  }
 
   const scrollToHash = React.useCallback((hash, behavior) => {
     const id = (hash || '#home').replace('#', '')
@@ -270,7 +281,7 @@ function App() {
             <ExternalLink className="text-link" href={profile.github}>View GitHub <ArrowUpRight size={16} aria-hidden="true" /></ExternalLink>
           </div>
           <div className="project-grid">
-            {projects.map((p) => {
+            {visibleProjects.map((p) => {
               const Icon = p.Icon
               return (
                 <article className="project-card" key={p.number}>
@@ -296,6 +307,31 @@ function App() {
               )
             })}
           </div>
+          {pageCount > 1 && (
+            <nav className="project-pager" aria-label="Project pages">
+              {Array.from({ length: pageCount }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={i === projectPage ? 'pager-btn is-active' : 'pager-btn'}
+                  aria-label={`Page ${i + 1}`}
+                  aria-current={i === projectPage ? 'page' : undefined}
+                  onClick={() => showProjectPage(i)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+              <button
+                type="button"
+                className="pager-btn"
+                aria-label="Next page"
+                disabled={projectPage >= pageCount - 1}
+                onClick={() => showProjectPage(projectPage + 1)}
+              >
+                <ArrowRight size={16} aria-hidden="true" />
+              </button>
+            </nav>
+          )}
         </section>
 
         <section className="experience section" id="experience">
